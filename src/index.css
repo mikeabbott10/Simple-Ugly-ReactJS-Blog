@@ -92,7 +92,8 @@ body {
 }
 
 .searchForm label {
-  display:none;
+  position: absolute;
+  left: -19999px;
 }
 
 .Nav ul {
