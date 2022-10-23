@@ -8,15 +8,22 @@ const Home = () => {
 
     // search
     const [search, setSearch] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
+    
+    // first way to filter
+    const searchResults = posts.filter(post =>
+        post.body.toLowerCase().includes(search.toLowerCase())
+        || post.title.toLowerCase().includes(search.toLowerCase())
+    ).reverse();
 
+    //second way to filter
+    /*const [searchResults, setSearchResults] = useState([]);
     useEffect(() => {
         const filteredResults = posts.filter(post =>
             post.body.toLowerCase().includes(search.toLowerCase())
             || post.title.toLowerCase().includes(search.toLowerCase())
         );
         setSearchResults(filteredResults.reverse());
-    }, [posts, search])
+    }, [posts, search])*/
     
     return (
         <>

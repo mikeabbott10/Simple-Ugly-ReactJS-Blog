@@ -13,7 +13,9 @@ export const DataProvider = ({ children }) => {
 
     useEffect(() => {
         setPosts(data)
-    }, [data]);
+    }, [data]); 
+    // useEffect does not compare arrays: [data] === [data] 
+    // it compares the values inside the arrays: data === data
 
     return (
         <DataContext.Provider value={{

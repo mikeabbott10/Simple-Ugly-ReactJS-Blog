@@ -8,7 +8,8 @@ const useAxiosFetch = (dataUrl) => {
 
     useEffect(()=>{
         let isMounted = true;
-        const source = axios.CancelToken.source(); // we can cancel the req if for whatever reason the component is unmounted
+        // we want to cancel the req if for whatever reason the component is unmounted
+        const source = axios.CancelToken.source(); 
 
         const fetchData = async (url) => {
             setIsLoading(true);
@@ -32,6 +33,7 @@ const useAxiosFetch = (dataUrl) => {
 
         fetchData(dataUrl);
 
+        // this will run before the next useEffect cb execution is triggered
         const cleanUp = () => {
             isMounted=false;
             source.cancel();
