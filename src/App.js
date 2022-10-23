@@ -1,19 +1,18 @@
 // containers
-import Header from './Header';
-import Nav from './Nav';
-import Footer from './Footer';
+import Header from './components/Header';
+import Nav from './components/Nav';
+import Footer from './components/Footer';
 
 // content
-import Home from './Home';
-import NewPost from './NewPost';
-import PostPage from './PostPage';
-import EditPost from './EditPost';
-import About from './About';
-import Missing from './Missing'; // 404
+import Home from './pages/Home/Home';
+import NewPost from './pages/NewPost/NewPost';
+import PostPage from './pages/PostPage/PostPage';
+import EditPost from './pages/EditPost/EditPost';
+import About from './pages/About/About';
+import Missing from './pages/Missing/Missing'; // 404
 
 import {Route, Routes} from 'react-router-dom';
 import { DataProvider } from './context/DataContext';
-import SearchForm from './SearchForm';
 
 
 function App() {

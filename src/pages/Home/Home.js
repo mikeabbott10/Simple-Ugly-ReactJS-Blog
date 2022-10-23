@@ -1,6 +1,6 @@
-import Feed from "./Feed";
-import { useContext, useEffect, useState } from 'react';
-import DataContext from './context/DataContext';
+import Feed from "../../components/Feed";
+import { useContext, useState } from 'react';
+import DataContext from '../../context/DataContext';
 import SearchForm from './SearchForm'
 
 const Home = () => {
@@ -9,21 +9,10 @@ const Home = () => {
     // search
     const [search, setSearch] = useState('');
     
-    // first way to filter
     const searchResults = posts.filter(post =>
         post.body.toLowerCase().includes(search.toLowerCase())
         || post.title.toLowerCase().includes(search.toLowerCase())
     ).reverse();
-
-    //second way to filter
-    /*const [searchResults, setSearchResults] = useState([]);
-    useEffect(() => {
-        const filteredResults = posts.filter(post =>
-            post.body.toLowerCase().includes(search.toLowerCase())
-            || post.title.toLowerCase().includes(search.toLowerCase())
-        );
-        setSearchResults(filteredResults.reverse());
-    }, [posts, search])*/
     
     return (
         <>

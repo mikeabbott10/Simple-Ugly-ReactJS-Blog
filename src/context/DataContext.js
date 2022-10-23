@@ -12,10 +12,12 @@ export const DataProvider = ({ children }) => {
     const { data, fetchError, isLoading } = useAxiosFetch('http://localhost:3500/posts');
 
     useEffect(() => {
-        setPosts(data)
-    }, [data]); 
+        setPosts(currentPosts => {
+            return data;
+        })
+    }, [data]);
     // useEffect does not compare arrays: [data] === [data] 
-    // it compares the values inside the arrays: data === data
+    // it compares every value inside the arrays: data === data
 
     return (
         <DataContext.Provider value={{

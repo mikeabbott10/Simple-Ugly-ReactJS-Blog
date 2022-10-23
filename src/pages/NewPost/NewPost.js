@@ -1,7 +1,7 @@
 import { useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DataContext from './context/DataContext';
-import api from './api/posts';
+import DataContext from '../../context/DataContext';
+import api from '../../api/posts';
 import { format } from 'date-fns';
 
 const NewPost = () => {
@@ -24,7 +24,9 @@ const NewPost = () => {
 
         try {
             const response = await api.post('/posts', newPost);
-            setPosts([...posts, response.data]);
+            setPosts(currentPosts => {
+                return [...currentPosts, response.data];
+            });
             navigate('/');
         } catch (err) {
             if(err.response){

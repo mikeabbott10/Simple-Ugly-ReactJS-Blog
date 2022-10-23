@@ -1,9 +1,9 @@
 import { format } from "date-fns";
 import { useContext, useEffect, useRef} from "react";
 import { useParams, Link } from "react-router-dom";
-import api from './api/posts';
+import api from '../../api/posts';
 import { useNavigate } from 'react-router-dom';
-import DataContext from "./context/DataContext";
+import DataContext from "../../context/DataContext";
 
 const EditPost = () => {
     const navigate = useNavigate();
@@ -34,7 +34,9 @@ const EditPost = () => {
         }
         try {
             const response = await api.put(`/posts/${id}`, updatedPost);
-            setPosts(posts.map(post => post.id === id ? { ...response.data } : post));
+            setPosts(currentPosts => {
+                return currentPosts.map(post => post.id === id ? { ...response.data } : post)
+            });
             navigate('/');
         } catch (err) {
             if(err.response){
