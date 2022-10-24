@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DataContext from '../../context/DataContext';
 import api from '../../api/posts';
@@ -8,6 +8,7 @@ const NewPost = () => {
     const navigate = useNavigate();
     const newPostTitle = useRef();
     const newPostBody = useRef();
+    const [isBtnDisabled, setIsBtnDisabled] = useState(true);
 
     const { posts, setPosts } = useContext(DataContext);
 
@@ -40,6 +41,10 @@ const NewPost = () => {
         }
     }
 
+    const isInputValid = () => {
+        setIsBtnDisabled(!newPostTitle.current.value || !newPostBody.current.value)
+    }
+
     return (
         <main className="NewPost">
             <h2>New Post</h2>
@@ -50,15 +55,19 @@ const NewPost = () => {
                     type="text"
                     required
                     ref={newPostTitle}
+                    onChange={isInputValid}
                 />
                 <label htmlFor="postBody">Body</label>
                 <textarea
                     id="postBody"
                     required
                     ref={newPostBody}
+                    onChange={isInputValid}
                 />
 
-                <button type="submit">Submit</button>
+                <button 
+                    type="submit"
+                    disabled={isBtnDisabled}>Submit</button>
             </form>
         </main>
     )
